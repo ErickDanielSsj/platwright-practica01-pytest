@@ -1,6 +1,7 @@
 from login_page import LoginPage
 from menu_opciones import MenuOpciones
 from ordenar_precios import OrdenarPrecios
+from agrega_producto_carrito import AgregaProducto
 # from playwright.sync_api import sync_playwright
 from playwright.sync_api import Page, expect
 
@@ -32,8 +33,18 @@ def test_ejecutar_prueba(page: Page):
         precio_bajo = filtroPrecios.obtienePrecios()
         print(f"💰 El primer producto ahora cuesta: {precio_bajo}")
         expect(filtroPrecios.obtiene_precio.first).to_have_text("$7.99")
+        page.screenshot(path='precios.png')
         # assert precio_bajo == "$7.99", (f"❌ El ordenamiento falló, el precio fue: {precio_bajo}")
         # browser.close()
+
+        # crea el ojeto de la nueva clase de tipo agregar producto
+        agregaProducto = AgregaProducto(page)
+        #Invoca metodo agregar producto
+        agregaProducto.agregar_productoOnesie()
+        page.screenshot(path='agrega_producto.png')
+        agregaProducto.agregar_productoBike()
+        page.screenshot(path='agrega_productoBike.png')
+        
 
 # if __name__ == "__main__":
 #     ejecutar_prueba()
