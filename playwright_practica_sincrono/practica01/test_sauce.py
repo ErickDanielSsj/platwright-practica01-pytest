@@ -2,6 +2,7 @@ from login_page import LoginPage
 from menu_opciones import MenuOpciones
 from ordenar_precios import OrdenarPrecios
 from agrega_producto_carrito import AgregaProducto
+from verificar import Verificar
 # from playwright.sync_api import sync_playwright
 from playwright.sync_api import Page, expect
 
@@ -44,7 +45,18 @@ def test_ejecutar_prueba(page: Page):
         page.screenshot(path='agrega_producto.png')
         agregaProducto.agregar_productoBike()
         page.screenshot(path='agrega_productoBike.png')
-        
+        agregaProducto.selecciona_icono_carrito()
+        page.screenshot(path="icono_carrito.png")
+        page.wait_for_timeout(1000)
+        #Se importa la clase verificar y se crea el objeto
+        verificar = Verificar(page)
+        #Se invican los metodos de la clase
+        verificar.selecciona_boton_cehckout()
+        page.screenshot(path="boton.png")
+        verificar.ingresa_nombre("Erick")
+        verificar.ingresa_apellido("Vera")
+        verificar.ingresa_codigoPostal("55450")
+
 
 # if __name__ == "__main__":
 #     ejecutar_prueba()

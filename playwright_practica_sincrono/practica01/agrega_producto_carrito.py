@@ -16,5 +16,6 @@ class AgregaProducto:
     def agregar_productoBike(self) -> None:
         self.agregar_producto_bike.click()
 
-    def selecciona_boton_checkout(self) -> None:
-        self.button_check_out.click()
+
+    def selecciona_icono_carrito(self) -> None:
+        self.icono_carrito.click()
